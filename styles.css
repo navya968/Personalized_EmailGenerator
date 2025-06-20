@@ -1,0 +1,136 @@
+/* styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg,#ff499e,#d264b6,#a480cf,#779be7,#49b6ff);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color:black
+  }
+  
+  p {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color:#3D2832;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: black;
+  }
+  
+  input, textarea, select {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    outline: none;
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: white;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex: 1;
+  }
+  
+  #generate-btn {
+    background: purple;
+    color: #fff;
+  }
+  
+  #generate-btn:hover {
+    background:lightblue;
+    
+  }
+  
+  #clear-btn {
+    background: red;
+    color: #fff;
+  }
+  
+  #clear-btn:hover {
+    background:orange;
+    transform: translateY(-3px); /* Lifts the button slightly */
+  }
+  
+  #copy-btn {
+    background: green;
+    color: #fff;
+  }
+  
+  #copy-btn:hover {
+    background: lightgreen;
+    transform: translateY(-3px); /* Lifts the button slightly */
+  }
+  
+  .output-container {
+    margin-top: 2rem;
+  }
+  
+  #output {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    outline: none;
+    min-height: 150px;
+  }

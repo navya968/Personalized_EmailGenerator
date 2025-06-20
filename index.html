@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Email Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>AI Personalized Email Generator</h1>
+    <p>Generate professional emails with ease using AI.</p>
+
+    <div class="form-container">
+      <div class="input-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Enter email subject">
+      </div>
+
+      <div class="input-group">
+        <label for="recipient">Recipient</label>
+        <input type="text" id="recipient" placeholder="Enter recipient's name">
+      </div>
+
+      <div class="input-group">
+        <label for="purpose">Purpose</label>
+        <input type="text" id="purpose" placeholder="Enter email purpose">
+      </div>
+
+      <div class="input-group">
+        <label for="instructions">Special Instructions</label>
+        <textarea id="instructions" placeholder="Enter any special instructions"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="tone">Tone</label>
+        <select id="tone">
+          <option value="Polite">Polite</option>
+          <option value="Formal">Formal</option>
+          <option value="Informal">Informal</option>
+          <option value="Enthusiastic">Enthusiastic</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="model">Model</label>
+        <select id="model">
+          <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+          <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button id="generate-btn">Generate Email</button>
+        <button id="clear-btn">Clear</button>
+        <button id="copy-btn">Copy to Clipboard</button>
+      </div>
+    </div>
+
+    <div class="output-container">
+      <label for="output">Generated Email</label>
+      <textarea id="output" readonly placeholder="Your generated email will appear here..."></textarea>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('generate-btn').addEventListener('click', async () => {
+      const outputField = document.getElementById('output');
+      outputField.value = 'Generating... Please wait.';
+      const subject = document.getElementById('subject').value;
+      const recipient = document.getElementById('recipient').value;
+      const purpose = document.getElementById('purpose').value;
+      const instructions = document.getElementById('instructions').value;
+      const tone = document.getElementById('tone').value;
+      const model = document.getElementById('model').value;
+
+      const response = await fetch('/generate-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subject,
+          recipient,
+          purpose,
+          instructions,
+          tone,
+          model,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        document.getElementById('output').value = data.email;
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    });
+
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      document.getElementById('output').value = '';
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+      alert('Email copied to clipboard!');
+    });
+  </script>
+</body>
+</html>
